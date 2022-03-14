@@ -1,0 +1,43 @@
+<template lang="pug">
+  div(id="app")
+    navBar(v-if="loggingStatus")
+    router-view
+</template>
+
+<script>
+import navBar from './components/NavBar'
+import { mapGetters, mapActions } from 'vuex'
+
+export default {
+  components: {
+    navBar
+  },
+  mounted () {
+    this.verifiedlogging()
+  },
+  computed: mapGetters(['loggingStatus']),
+  methods: mapActions(['verifiedlogging'])
+}
+
+</script>
+
+<style lang="scss">
+@import './scss/application.scss';
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+#nav {
+  padding: 30px;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>
